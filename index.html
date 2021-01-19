@@ -1,48 +1,38 @@
 <html>
+
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>ContactBook</title>
 	<style>
 		body {
-			background-color:black;
-			font-family: monospace;
-/* 			color:white; */
-			font-size:50px;
-			text-align: center;
-			margin-top:20%;
+			font-family: Arial, Helvetica, sans-serif;
 		}
-		#magic{
-			color: #777;
-			border-right: 1px solid #777;
-			padding-right: 7px;
-			display: inline;
+
+		.centered {
+			text-align: center;
+		}
+
+		@media only screen and (min-width: 415px) {
+			h1 {
+				padding-top: 10px;
+			}
 		}
 	</style>
 </head>
+
 <body>
-    
-	<div id="magic"></div>
-    
-  <script>
-		var words = "Hello world!"
-			el = document.getElementById('magic');
-			character_counter = 0;
-		function updateText()
-		{
-            if( words[character_counter] == " " ){
-			    el.innerHTML = el.innerHTML + "\xa0";
-                character_counter++;
-            }
-            else{
-			    el.innerHTML = el.innerHTML+words[character_counter++];
-            }
-			
-            if(character_counter == words.length + 1)
-			{
-				character_counter = 0;
-				el.innerHTML = '';
-			}
-		}
-		setInterval(updateText,300);
-	</script>
+
+	<h1 class="centered">
+		ContactBook
+	</h1>
+	<h2 class="centered">
+		Organize Your Contacts
+	</h2>
+	<p class="centered">
+		A contact data app for business people - built by business people.
+	</p>
+
 </body>
+
 </html>
