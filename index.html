@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	<title>ContactBook</title>
 	<style>
 		body {
@@ -32,13 +33,44 @@
 	<p class="centered">
 		A contact data app for business people - built by business people.
 	</p>
+	<h3 class="centered" style="margin-top: 10vh;">
+		Get notified when it's released:
+	</h3>
 
+	<form id="email-form" action="#" class="centered">
+		<input type="email" placeholder="Email" id="email">
+		<button type="submit">
+			Send
+		</button>
+	</form>
+
+	<script>
+		function saveEmail(email) {
+			return firebase.firestore().collection('emails').add({
+				email,
+				timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+			}).catch(function (error) {
+				console.error('Error writing email to Firebase Database', error);
+			});
+		}
+		function onEmailFormSubmit(e) {
+			if (emailInputElement.value) {
+				saveEmail(emailInputElement.value);
+			}
+		}
+		var emailFormElement = document.getElementById('email-form');
+		var emailInputElement = document.getElementById('email');
+		emailFormElement.addEventListener('submit', onEmailFormSubmit);
+	</script>
+
+	<!-- Import and configure the Firebase SDK -->
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
 
 	<!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 	<script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
 
 	<script>
 		// Your web app's Firebase configuration
