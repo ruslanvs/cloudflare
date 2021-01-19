@@ -54,8 +54,12 @@
 			});
 		}
 		function onEmailFormSubmit(e) {
+			e.preventDefault();
 			if (emailInputElement.value) {
-				saveEmail(emailInputElement.value);
+				saveEmail(emailInputElement.value)
+					.then(() => {
+						emailFormElement.reset();
+					});
 			}
 		}
 		var emailFormElement = document.getElementById('email-form');
